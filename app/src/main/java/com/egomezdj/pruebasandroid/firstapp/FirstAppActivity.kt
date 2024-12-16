@@ -2,6 +2,7 @@ package com.egomezdj.pruebasandroid.firstapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
@@ -13,27 +14,39 @@ class FirstAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_app)
 
-        val btnStart = findViewById<AppCompatButton>(R.id.btnStart)
-        val etName = findViewById<AppCompatEditText>(R.id.etName)
+        val btnEnviar = findViewById<AppCompatButton>(R.id.btnEnviar)
+        val etNombre = findViewById<AppCompatEditText>(R.id.etNombre)
         val etEdad = findViewById<AppCompatEditText>(R.id.etEdad)
+        val txtDevuelto = findViewById<TextView>(R.id.txtDevuelto)
 
         // Registrar el ActivityResultLauncher
         val launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                val data =result.data  // Obtenemos el intent con los datos
+                val data = result.data  // Obtenemos el intent con los datos
                 val name = data?.getStringExtra("nombre")
-                val age = data?.getIntExtra("edad", -1)
-                //textView.text = "Nombre: $name\nEdad: $age"
+                val age = data?.getStringExtra("edad")
+                txtDevuelto.text = getString(R.string.devuelto, name, age)
             }
         }
 
         // Botón para abrir la segunda actividad
-        btnStart.setOnClickListener {
+        btnEnviar.setOnClickListener {
             val intent = Intent(this, ResultActivity::class.java)
-            intent.putExtra("nombre", etName)
-            intent.putExtra("edad", etEdad)
+            val name = if (etNombre.text.isNullOrBlank()) {
+                getString(R.string.errnombre)
+            } else {
+                etNombre.text.toString()
+            }
+            val vedad = etEdad.text?.toString()?.toIntOrNull()
+            val age = if (vedad == null || vedad <= 0) {
+                getString(R.string.erredad)
+            } else {
+                etEdad.text.toString()
+            }
+            intent.putExtra("nombre", name)
+            intent.putExtra("edad", age)
             launcher.launch(intent)
         }
     }

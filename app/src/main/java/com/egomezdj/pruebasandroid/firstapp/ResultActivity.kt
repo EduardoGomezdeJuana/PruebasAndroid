@@ -1,10 +1,11 @@
 package com.egomezdj.pruebasandroid.firstapp
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.AppCompatButton
 import com.egomezdj.pruebasandroid.R
 
 class ResultActivity : AppCompatActivity() {
@@ -12,16 +13,16 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val tvResult = findViewById<TextView>(R.id.tvResult)
-        val btnReturn = findViewById<TextView>(R.id.btnResult)
+        val txtEnviado = findViewById<TextView>(R.id.txtEnviado)
+        val btnVolver = findViewById<AppCompatButton>(R.id.btnVolver)
 
         // Recibir los datos enviados desde FirstActivity
         val name = intent.getStringExtra("nombre")
-        val age = intent.getIntExtra("edad", -1)
-//      tvResult.text = getString(R.string.respuesta, name, age)
+        val age = intent.getStringExtra("edad")
+        txtEnviado.text = getString(R.string.enviado, name, age)
 
         // Devolver los datos a la primera actividad
-        btnReturn.setOnClickListener {
+        btnVolver.setOnClickListener {
             val resultIntent = Intent()
             resultIntent.putExtra("nombre", name)
             resultIntent.putExtra("edad", age)

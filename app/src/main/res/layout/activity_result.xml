@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".firstapp.ResultActivity">
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tvResult"
+        android:id="@+id/txtEnviado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="@string/hint_ejemplo"
-        android:textSize="35sp"
-        android:textColor="@color/teal_200"
-        app:layout_constraintBottom_toTopOf="@+id/btnReturn"
+        android:textSize="24sp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVolver"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </TextView>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnReturn"
+        android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/teal_200"
         android:text="@string/volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
     </androidx.appcompat.widget.AppCompatButton>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">PruebasAndroid</string>
-    <string name="pulsame">Pulsame</string>
-    <string name="esc_nombre">Escribe tu nombre y edad</string>
+    <string name="enviar">Enviar</string>
+    <string name="esc_nombre_edad">Escribe tu nombre y edad</string>
     <string name="hint_ejemplo">Esto es un ejemplo</string>
-    <string name="respuesta">Hola %1$s tienes %2$s años</string>
+    <string name="enviado">Enviado: %1$s tiene %2$s años</string>
+    <string name="devuelto">Devuelto: %1$s tiene %2$s años</string>
     <string name="rec_datos">Recogida datos</string>
     <string name="Abrir">Abrir</string>
     <string name="volver">Volver</string>
+    <string name="errnombre">desconocido</string>
+    <string name="erredad">sin edad</string>
 </resources>

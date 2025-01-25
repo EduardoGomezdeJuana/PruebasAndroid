@@ -14,10 +14,10 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
 
         val btnDatos = findViewById<Button>(R.id.btnDatos)
-        btnDatos.setOnClickListener{ navigateToSaludApp() }
+        btnDatos.setOnClickListener{ navigateToFirstApp() }
     }
 
-    fun navigateToSaludApp(){
+    fun navigateToFirstApp(){
         val intent = Intent(this, FirstAppActivity::class.java)
         startActivity(intent)
     }

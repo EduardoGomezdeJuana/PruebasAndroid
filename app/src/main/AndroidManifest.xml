@@ -13,9 +13,6 @@
         android:theme="@style/Theme.PruebasAndroid"
         tools:targetApi="24">
         <activity
-            android:name=".firstapp.DBActivity"
-            android:exported="false" />
-        <activity
             android:name=".firstapp.MenuActivity"
             android:exported="true">
             <intent-filter>
@@ -26,6 +23,13 @@
         </activity>
         <activity
             android:name=".firstapp.FirstAppActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".firstapp.RepAppActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

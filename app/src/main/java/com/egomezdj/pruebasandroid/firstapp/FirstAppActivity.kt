@@ -21,7 +21,7 @@ class FirstAppActivity : AppCompatActivity() {
         val btnVolver = findViewById<AppCompatButton>(R.id.btnVolver)
         val etNombre = findViewById<AppCompatEditText>(R.id.etNombre)
         val etEdad = findViewById<AppCompatEditText>(R.id.etEdad)
-        val dao = AppDatabase.getDatabase(this).personaDao()
+        val dao = AppDatabase.getDatabase(this).personDao()
 
         btnGuardar.setOnClickListener {
             val name = etNombre.text.toString()
@@ -29,7 +29,7 @@ class FirstAppActivity : AppCompatActivity() {
 
             if (name.isNotEmpty() && age > 0) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    dao.insert(Persona(nombre = name, edad = age))
+                    dao.insert(Person(name = name, age = age))
                 }
                 Toast.makeText(this, getString(R.string.guardado,name,age), Toast.LENGTH_SHORT).show()
 

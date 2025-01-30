@@ -14,38 +14,38 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.egomezdj.pruebasandroid.R
 
-class PersonaAdapter : ListAdapter<Persona, PersonaAdapter.PersonaViewHolder>(DiffCallback()) {
+class PersonAdapter : ListAdapter<Person, PersonAdapter.PersonViewHolder>(DiffCallback()) {
 
-    // Crea las vistas de cada elemento de la lista usando 'item_persona.xml'
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonaViewHolder {
+    // Crea las vistas de cada elemento de la lista usando 'item_person.xml'
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_persona, parent, false)
-        return PersonaViewHolder(view)
+            .inflate(R.layout.item_person, parent, false)
+        return PersonViewHolder(view)
     }
 
     // Vincula los datos a las vistas tomando los  datos específicos de la lista
     // asignandolos a los elementos visuales
-    override fun onBindViewHolder(holder: PersonaViewHolder, position: Int) {
-        val persona = getItem(position)
-        holder.bind(persona)
+    override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
+        val person = getItem(position)
+        holder.bind(person)
     }
 
-    class PersonaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.textName)
         private val ageTextView: TextView = itemView.findViewById(R.id.textAge)
 
-        fun bind(persona: Persona) {
-            nameTextView.text = persona.nombre
-            ageTextView.text = persona.edad.toString()
+        fun bind(person: Person) {
+            nameTextView.text = person.name
+            ageTextView.text = person.age.toString()
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Persona>() {
-        override fun areItemsTheSame(oldItem: Persona, newItem: Persona): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<Person>() {
+        override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Persona, newItem: Persona): Boolean {
+        override fun areContentsTheSame(oldItem: Person, newItem: Person): Boolean {
             return oldItem == newItem
         }
     }

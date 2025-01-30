@@ -17,12 +17,12 @@ class RepAppActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val dao = AppDatabase.getDatabase(this).personaDao()
-        val adapter = PersonaAdapter()
+        val dao = AppDatabase.getDatabase(this).personDao()
+        val adapter = PersonAdapter()
         recyclerView.adapter = adapter
 
-        dao.getAllPersonas().observe(this) { personas ->
-            adapter.submitList(personas)
+        dao.getAllPersons().observe(this) { persons ->
+            adapter.submitList(persons)
         }
 
     // Botón para volver a la actividad anterior

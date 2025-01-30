@@ -6,10 +6,10 @@ import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface PersonaDao {
+interface PersonDao {
     @Insert
-    suspend fun insert(persona: Persona)
+    suspend fun insert(person: Person)
 
-    @Query("SELECT * FROM Persona")
-    fun getAllPersonas(): LiveData<List<Persona>>
+    @Query("SELECT * FROM Person")
+    fun getAllPersons(): LiveData<List<Person>>
 }

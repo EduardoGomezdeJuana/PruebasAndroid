@@ -6,6 +6,10 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.egomezdj.pruebasandroid.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class RepAppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,13 +25,21 @@ class RepAppActivity : AppCompatActivity() {
         val adapter = PersonAdapter()
         recyclerView.adapter = adapter
 
-        dao.getAllPersons().observe(this) { persons ->
-            adapter.submitList(persons)
-        }
+        loadData()
 
-    // Botón para volver a la actividad anterior
-    btnAtras.setOnClickListener {
-        finish()
+        // Botón para volver a la actividad anterior
+        btnAtras.setOnClickListener {
+            finish()
+        }
     }
+    private fun loadData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val dao = AppDatabase.getDatabase(this).personDao()
+            val personsWithHobbies = dao.getPersonsWithHobbies()
+            withContext(Dispatchers.Main) {
+                adapter.submitList(personsWithHobbies)
+            }
+        }
     }
 }
+

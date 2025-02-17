@@ -7,9 +7,11 @@
     <string name="hint_ejemplo">Esto es un ejemplo</string>
     <string name="rec_datos">Recogida datos</string>
     <string name="Abrir">Abrir</string>
-    <string name="guardado">Guardado %1$s con edad %2$d</string>
+    <string name="guardado">Guardado %1$s</string>
     <string name="nombre">Nombre</string>
     <string name="edad">Edad</string>
+    <string name="hobbies">Hobbies (separados por coma)</string>
     <string name="errnombre">&lt;Persona sin nombre&gt;</string>
     <string name="erredad">&lt;Edad incorrecta&gt;</string>
+    <string name="errhobbies">&lt;Sin información de hobbies&gt;</string>
 </resources>

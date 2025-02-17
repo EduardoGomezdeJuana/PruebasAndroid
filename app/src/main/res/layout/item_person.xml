@@ -6,16 +6,14 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textName"
+        android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nombre"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textAge"
+        android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edad"
-        android:textSize="14sp" />
+        android:textSize="34sp" />
 </LinearLayout>

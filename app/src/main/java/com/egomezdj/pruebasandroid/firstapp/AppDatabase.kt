@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Person::class], version = 1)
+@Database(entities = [Person::class, Hobby::class, HobbyPerson::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
 
@@ -18,7 +18,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "person_database"
+                    "hobbies_database"
                 ).build()
                 INSTANCE = instance
                 instance

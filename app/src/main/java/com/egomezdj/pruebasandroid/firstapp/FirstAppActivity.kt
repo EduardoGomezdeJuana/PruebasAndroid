@@ -21,21 +21,27 @@ class FirstAppActivity : AppCompatActivity() {
         val btnVolver = findViewById<AppCompatButton>(R.id.btnVolver)
         val etNombre = findViewById<AppCompatEditText>(R.id.etNombre)
         val etEdad = findViewById<AppCompatEditText>(R.id.etEdad)
+        val etHobbies = findViewById<AppCompatEditText>(R.id.etHobbies)
         val dao = AppDatabase.getDatabase(this).personDao()
 
         btnGuardar.setOnClickListener {
             val name = etNombre.text.toString()
             val age = etEdad.text.toString().toIntOrNull() ?: 0
+            val hobbies = etHobbies.text.toString().split(",").map { it.trim() }
 
-            if (name.isNotEmpty() && age > 0) {
+            if (name.isNotEmpty() && age > 0 && hobbies.isNotEmpty()) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    dao.insert(Person(name = name, age = age))
+                    val personId = dao.insertPerson(Person(name = name, age = age))
+                    hobbies.forEach { hobbyName ->
+                        val hobbyId = dao.insertHobby(Hobby(name = hobbyName))
+                        dao.insertHobbyPerson(HobbyPerson(personId = personId, hobbyId = hobbyId))
+                    }
+                    //Toast.makeText(this, getString(R.string.guardado, name), Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(this, getString(R.string.guardado,name,age), Toast.LENGTH_SHORT).show()
-
                 // Limpiar campos de entrada
                 etNombre?.text?.clear()
                 etEdad?.text?.clear()
+                etHobbies.text?.clear()
                 etNombre.requestFocus()
 
             } else if (name.isEmpty()){
@@ -44,6 +50,9 @@ class FirstAppActivity : AppCompatActivity() {
             } else if (age <= 0){
                 Toast.makeText(this, getString(R.string.erredad), Toast.LENGTH_SHORT).show()
                 etEdad.requestFocus()
+            } else if (hobbies.isEmpty()){
+                Toast.makeText(this, getString(R.string.errhobbies), Toast.LENGTH_SHORT).show()
+                etHobbies.requestFocus()
             }
         }
 

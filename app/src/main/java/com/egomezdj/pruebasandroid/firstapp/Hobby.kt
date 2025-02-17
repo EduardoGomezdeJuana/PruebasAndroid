@@ -1,12 +1,10 @@
 package com.egomezdj.pruebasandroid.firstapp
 
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "person")
-data class Person(
+@Entity(tableName = "hobby")
+data class Hobby(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val name: String,
-    val age: Int
+    val name: String
 )
